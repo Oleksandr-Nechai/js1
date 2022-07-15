@@ -28,6 +28,7 @@ const options = {
       return;
     }
     refs.buttonStart.removeAttribute('disabled', 'disabled');
+    refs.inputDate.disabled = true;
     timeDifference =
       selectedDates[0].getTime() - Math.round(currentTime / 1000) * 1000;
     const objectRemainingTime = convertMs(timeDifference);
@@ -71,6 +72,7 @@ function padStart(value) {
 refs.buttonStart.addEventListener('click', () => {
   timeInterval = setInterval(() => {
     refs.buttonStart.setAttribute('disabled', 'disabled');
+    refs.inputDate.disabled = false;
     timeDifference -= 1000;
     const objectRemainingTime = convertMs(timeDifference);
     markupTimer(objectRemainingTime);
