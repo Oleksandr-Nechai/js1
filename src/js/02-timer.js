@@ -28,19 +28,21 @@ const options = {
   minuteIncrement: 1,
   onClose(selectedDates) {
     const currentTime = Date.now();
-    if (timeInterval) {
-      clearInterval(timeInterval);
+    const dateStart = selectedDates[0].getTime()
+    if (timeIntervalId) {
+      clearInterval(timeIntervalId);
     }
-    if (selectedDates[0].getTime() < currentTime) {
-      Notiflix.Notify.info('Cogito ergo sum');
+    if (dateStart < currentTime) {
+      Notiflix.Notify.failure('Please choose a date in the future!');
       return;
     }
+    Notiflix.Block.arrows('[data-start]',{backgroundColor: 'rgba(255,255,255,0.1)',svgSize: '15px',svgColor: 'red',});
+    Notiflix.Block.remove('[data-start]', 500);
     cleareIntervalById(timeIntervalId);
-
+    Notiflix.Notify.success('Success! Please click on the start button.');
     refs.buttonStart.removeAttribute('disabled', true);
     refs.inputDate.disabled = true;
     timeDifference = dateStart - Math.round(currentTime / 1000) * 1000;
-    // const objectRemainingTime = convertMs(timeDifference);
     markupTimer(convertMs(timeDifference));
   },
 };
@@ -89,6 +91,9 @@ refs.buttonStop.addEventListener('click', stoppingTimer);
 
 function activateTimer() {
   timeIntervalId = setInterval(updateTimer, 1000);
+  Notiflix.Notify.info('Timer is activated');
+  
+;
 }
 
 function updateTimer() {
@@ -112,6 +117,8 @@ function stoppingTimer () {
   refs.buttonPause.setAttribute('disabled', true);
   clearInterval(timeIntervalId)
   markupTimer({})
+  Notiflix.Notify.warning('Stop timer');
+ 
 }
 
 function breakTimer () {
