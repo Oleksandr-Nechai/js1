@@ -5,15 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Countdown timer</title>
     <link rel="stylesheet" href="css/common.css" />
+    <link rel="stylesheet" href="./sass/main.scss"/>
   </head>
   <body>
     <p><a href="index.html">Go back</a></p>
 
-    <input type="text" id="datetime-picker" />
-    <ul>
-      <li><button type="button" data-start>Start</button></li>
-      <li><button type="button" data-pause>Pause</button></li>
-      <li><button type="button" data-stop >Stop</button></li>
+    <input class="time-picker" type="text" id="datetime-picker" />
+    <ul class="button_list">
+      <li ><button type="button" data-start  class="button_timer">Start</button></li>
+      <li><button type="button" data-pause class="button_timer">Pause</button></li>
+      <li ><button type="button" data-stop  class="button_timer">Stop</button></li>
     </ul>
     
 
